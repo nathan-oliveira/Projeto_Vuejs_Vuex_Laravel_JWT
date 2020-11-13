@@ -1,0 +1,76 @@
+Aula 74, tempo: 
+
+==== Atualizar ou gerar pasta vendor ====
+composer update
+
+==== Api com Laravel ====
+
+==== instalar o Laravel ==== 
+composer create-project --prefer-dist laravel/laravel backend
+
+cd backend
+composer require laravel/passport
+
+==== configurar o banco de dados ...
+php artisan migrate
+php artisan passport:install
+
+==== colocar no User:
+use Laravel\Passport\HasApiTokens;
+use HasApiTokens, Notifiable;
+
+==== e o config/auth
+'api' => [
+    'driver' => 'passport',
+    'provider' => 'users',
+],
+
+pronto...
+
+===== pt_BR
+https://github.com/lucascudo/laravel-pt-BR-localization
+
+Rodar API:
+php artisan serve
+
+
+===== Adicionar Migration
+php artisan make:migration add_imagem_table_users --table=users
+php artisan migrate
+
+===== Criar Controller
+php artisan make:controller UsuarioController
+
+===== CORS 
+https://github.com/fruitcake/laravel-cors
+2:56
+
+===== Create Middleware
+php artisan make:middleware Cors
+
+
+===== Banco de dados:
+users
+conteudos (id, user_id, titulo, texto, imagem, link, data)
+comentarios (id, conteudo_id, user_id, texto, data)
+amigos (user_id, amigo_id)
+curtidas (user_id, conteudo_id)
+
+===== Criando Modelos e Migrações:
+php artisan make:model Conteudo -m
+php artisan make:model Comentario -m
+
+php artisan make:migration create_amigos_table --create=amigos
+php artisan make:migration create_curtidas_table --create=curtidas
+
+===== Criar tabelas:
+php artisan migrate
+
+php artisan migrate:status
+
+===== Desfazer as Migrações
+php artisan migrate:rollback
+php artisan migrate:status
+
+==== Vuex
+npm install vuex --save
